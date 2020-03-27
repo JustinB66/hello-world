@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Green Lantern Golf's Wishon S2S Shaft-Fitting Tool!</title>
+	<style type= "text/css">
+		body {
+			font-family: Lato;
+			text-align: center; /*causes div block to be centered */
+		}
+		.Alert {
+			color: red;  /* for error msgs. */
+			font-family: Lato;
+			font-size: 14pt;
+		}
+		div.container {
+			width: 980; /* so it doesn't fill screen */
+			margin: 0px;
+			border: 1px solid navy; /* adds some padding at the top */
+			text-align: left; /* don't want it centered! */
+		}
+		div.content, td {
+			font-family: Lato;
+			font-size: 14pt;
+			margin-left: 0px;
+		}
+		.RecommendationOutput {
+			border: 2px solid #000000;
+			font-weight: bold;
+		}
+		.SmallItalic {
+			font-family: Lato;
+			font-size: 12pt;
+			font-style: italic;
+		}
+		.Button {
+			border-color: #3ddf34;
+			color: #000;
+			box-shadow: 0 0 40px 40px #3ddf34 inset, 0 0 0 0 #3ddf34;
+			transition: all 150ms ease-in-out;
+			font-size: 20pt;
+		}
+		.Button:hover {
+			box-shadow: 0 0 10px 0 #3ddf34 inset, 0 0 10px 4px #3ddf34;
+		}	
+	</style>
+</head>
+<body>
+	<style="top: 40px; position: relative;">
+			<div class="container">
+				<div class="content">
+					<form name="frmMain" method="post" action="GLGShaftFit"
+					id= "frmMain">
+						<img alt="GLG S2S Shaft Fitting Banner"
+					src="ShaftFitBanner.jpg"><br><br>
+						<table id="tblLayoutInputs" border="0" cellpadding="8"
+			style= "border-collapse:collapse">
+				<tbody><tr>
+					<td>
+					<nobr>Driver Clubhead Speed:</nobr>
+				<br>
+					<font class="SmallItalic"> (enter speed from 50 to 125 mph)</font>
+					</td>
+					<td>
+						<input name="txtWoodSwingSpeed" type="text"
+					maxlength="3" id="txtWoodSwingSpeed" style="width:30px;"
+					value="125">&nbsp;mph
+					</td>
+					<td id="cellSpacer01">
+					</td>
+					<td>
+						6-Iron Clubhead Speed:<br>
+						<font class="SmallItalic">(enter speed from 40 to 90 mph)</font>
+						</td>
+						<td>
+							<input name="txtIronSwingSpeed" type="text"
+					maxlength="3" id="txtIronSwingSpeed" style="width:30px;"
+					value="81">&nbsp;mph
+						</td>
+						</tr>
+						<tr>
+						<td>
+							What's Your Downswing Transition Like?
+						</td>
+						<td>
+							<select name="dd1DownswingTransition"
+					id="dd1DownswingTransition">
+								<option value="1">1- Smooth, little force</option>
+								<option value="2">2- Average, moderate force</option>
+								<option value="3">3- Very forceful</option>
+									</select>
+						</td>
+						<td id="cellSpacer02">
+						</td>
+						<td>
+							What's Your Downswing Tempo Like?
+						</td>
+						<td>
+							<select name="dd1DownswingTempo"
+						id="dd1DownswingTempo">
+								<option value="1">1- Smooth and Rhytmic; a "swinger"</option>
+								<option value="2">2- Average, a bit of aggression</option>
+								<option value="3">3- Fast & Aggressive; a "hitter"</option>
+									</select>
+						</td>
+						</tr>
+						<tr>
+						<td>
+							When Do You Release The Club?
+						</td>
+						<td>
+							<select name="dd1WristRelease"
+						id="dd1WristRelease">
+								<option value="1">1- Early, around shoulder-height ("casting")</option>
+								<option value="2">2- Mid, around hip-height</option>
+								<option value="3">3- Late, just before the ball</option>
+									</select>
+						</td>
+						<td id="cellSpacer03">
+						</td>
+						<td>
+							How "Golf Strong" Are You?
+						</td>
+						<td>
+							<select name="dd1PhysicalStrength"
+						id="dd1PhysicalStrength">
+								<option value="1">1- Not very</option>
+								<option value="2">2- Average "golf strength"</option>
+								<option value="3">3- Very "golf strong"</option>
+									</select>
+						</td>
+						</tr>
+						<tr>
+								<td align="right" colspan="5">
+									<button class="Button">"What Shaft(s) Do You Need?"</button>
+										</td>
+									</tr>
+								</tbody></table>
+								<table id="tblLayoutRecommendation" border="0" cellpadding="2"
+							style="border-collape:collapse">
+								<tbody><tr>
+									<td>Use This S2S Wood Shaft:
+										</td>
+									<td width="40">
+									</td>
+									<td>Any Tip Trimming?
+									</td>
+									</tr>
+									<tr>
+										<td class="RecommendationOutput">
+										<b>&nbsp;</b>
+										</td>
+										<td>
+										</td>
+										<td align="right" class="RecommendationOutput">
+																0"
+										</td>
+									</tr>
+									<tr>
+										<td id="cellRecomVerticalSpacer01" colspan="3"
+										height="10">
+									</td>
+									</tr>
+									<tr>
+										<td>
+											Use This S2S Graphite Iron Shaft:</td>
+										</td>
+									<td>
+									</td>
+									<td>Any Extra Tip Trimming?
+									</td>
+										</tr>
+									<tr>
+										<td class="RecommendationOutput">
+												&nbsp;
+										</td>
+									<td>
+									</td>
+									<td align="right" class="RecommendationOutput">
+															0"
+										</td>
+									</tr>
+									<tr>
+										<td id="Td1" colspan="3" height="10">
+									</td>
+									</tr>
+									<td>
+										Use This S2S Steel Iron Shaft:
+										</td>
+									<td>
+									</td>
+									<td>Any Extra Tip Trimming?
+										</td>
+									</tr>
+									<tr>
+										<td class="RecommendationOutput">
+											&nbsp;
+										</td>
+									<td>
+										</td>
+									<td align="right" class="RecommendationOutput">
+															0"
+										</td>
+									</tr>
+									<tr>
+										<td id="Td2" colspan="3" height="10">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Use This S2S Hybrid Shaft:<br>
+											</td>
+											<td>
+									</td><td>Any Extra Tip Trimming?</td>
+									</tr>
+									<tr>
+										<td class="RecommendationOutput">
+											&nbsp;
+										</td>
+										<td>
+									</td><td align="right" class="RecommendationOutput">
+										0"
+									</td>
+									</tr>
+									<tr>
+										<td id="Td3" colspan="3" height="10">
+									</td></tr>
+									</tbody></table>
+									<span class="Alert">
+									Driver swing speed has to be somewhere from 50mph to 125mph<br><br>
+									</span>
+								</form>
+								</div>
+								</div>
+				
+</body>
+</html>
