@@ -1,11 +1,162 @@
-# hello-world
-My First Repository!
+var cvs = document.getElementById("canvas");
 
-I'm Justin, and I've been unknowingly doing website stuff for about 4 years, thanks to my website.
+var ctx = cvs.getContext("2d");
 
-  I've recently been through a career change, and I figured getting more learned in website development (and hopefully app development)
-    will not only improve my website, but give me a new career path that my wife and kids can be proud of.
-    
-  I wish I could say something clever, like the "ReadMe" tutorial- you know, about eating tacos on the moon- but I can't.  I'm still working towards that!
+// load images
+
+var bird = new Image();
+
+var bg = new Image();
+
+var fg = new Image();
+
+var pipeNorth = new Image();
+
+var pipeSouth = new Image();
+
+bird.src = "images/bird.png";
+
+bg.src = "images/bg.png";
+
+fg.src = "images/fg.png";
+
+pipeNorth.src = "images/pipeNorth.png";
+
+pipeSouth.src = "images/pipeSouth.png";
+
+// some variables
+
+var gap = 85;
+
+var contant;
+
+var bX = 10;
+
+var bY = 150;
+
+var gravity = 1.5;
+
+var score = 0;
+
+// audio files
+
+var fly = new Audio();
+
+var scor = new Audio();
+
+fly.src = "sounds/fly.mp3";
+
+scor.src = "sounds/score.mp3"; 
+
+//on key down
+
+document.addEventListener("keydown", moveUp);
+
+function moveUp() {
+
+    bY -= 25;
+
+    fly.play();
+
+}
+
+// pipe coordinates
+
+var pipe = [];
+
+pipe[0] = {
+
+    x : cvs.width,
+
+    y : 0
+
+};
+
+// draw images
+
+function draw(){
+
   
-  I want to learn; not just by getting my hands dirty, but I plan on going back to school for this (which I have!).  I'm always open for suggestions, advice, or whatever- and I     hope to one day be in a place to do the same for others here.
+
+    ctx.drawImage(bg,0,0);
+
+  
+
+    for(var i = 0; i < pipe.length; i++){
+
+      
+
+        constant = pipeNorth.height+gap;
+
+        ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
+
+        ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
+
+            
+
+        pipe[i].x--;
+
+      
+
+        if( pipe[i].x == 125 ){
+
+            pipe.push({
+
+                x : cvs.width,
+
+                y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
+
+            });
+
+        }
+
+        // detect collision
+
+      
+
+        if( bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+constant) || bY + bird.height >=  cvs.height - fg.height){
+
+            location.reload(); // reload the page
+
+        }
+
+      
+
+        if(pipe[i].x == 5){
+
+            score++;
+
+            scor.play();
+
+        }
+      
+
+    }
+
+    ctx.drawImage(fg,0,cvs.height - fg.height);
+
+  
+
+    ctx.drawImage(bird,bX,bY);
+
+  
+
+    bY += gravity;
+
+  
+
+    ctx.fillStyle = "#000";
+
+    ctx.font = "20px Verdana";
+
+    ctx.fillText("Score : "+score,10,cvs.height-20);
+
+  
+
+    requestAnimationFrame(draw);
+
+  
+
+}
+
+draw();
